@@ -1,5 +1,6 @@
 package com.lemparty.config.profile;
 
+import com.lemparty.service.ProfileService;
 import com.lemparty.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,5 +17,8 @@ public class GlobalProfile {
     public UserService getUserService() {
         return new UserService();
     }
+
+    @Bean
+    public ProfileService getProfileService() { return new ProfileService(); }
 
 }

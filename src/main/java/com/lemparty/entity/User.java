@@ -1,19 +1,15 @@
 package com.lemparty.entity;
 
-import org.springframework.data.annotation.Transient;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "users")
 public class User {
 
+    @Id
     private String userID;
-    private String firstname;
-    private String lastname;
     private String email;
-    private int birthmonth;
-    private int birthday;
-    private int birthyear;
-    private Profile profile;
-
-    @Transient
     private String password;
 
     public String getUserID() {
@@ -24,41 +20,6 @@ public class User {
         this.userID = userID;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public User(){
-
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -67,27 +28,11 @@ public class User {
         this.email = email;
     }
 
-    public int getBirthmonth() {
-        return birthmonth;
+    public String getPassword() {
+        return password;
     }
 
-    public void setBirthmonth(int birthmonth) {
-        this.birthmonth = birthmonth;
-    }
-
-    public int getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(int birthday) {
-        this.birthday = birthday;
-    }
-
-    public int getBirthyear() {
-        return birthyear;
-    }
-
-    public void setBirthyear(int birthyear) {
-        this.birthyear = birthyear;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
