@@ -2,6 +2,7 @@ package com.lemparty.config.profile;
 
 import com.lemparty.service.ProfileService;
 import com.lemparty.service.UserService;
+import com.lemparty.util.SSLContextHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,5 +21,10 @@ public class GlobalProfile {
 
     @Bean
     public ProfileService getProfileService() { return new ProfileService(); }
+
+    @Bean
+    public SSLContextHelper getSSLContextHelper() {
+        return new SSLContextHelper();
+    }
 
 }
