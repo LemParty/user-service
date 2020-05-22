@@ -1,13 +1,39 @@
 package com.lemparty.config.profile;
 
-import com.lemparty.service.ProfileService;
-import com.lemparty.service.UserService;
-import com.lemparty.util.SSLContextHelper;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
+import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
+import com.amazonaws.services.dynamodbv2.util.TableUtils;
+import com.lemparty.entity.Profile;
+import com.lemparty.entity.User;
+import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@EnableDynamoDBRepositories(basePackages = "com.lemparty.data")
+//@EnableTransactionManagement
 public class GlobalProfile {
+
+    @Value("${amazon.dynamodb.endpoint}")
+    private String amazonDynamoDBEndpoint;
+
+    @Value("${amazon.dynamodb.region}")
+    private String amazonDynamoDBRegion;
+
+    @Value("${amazon.aws.accesskey}")
+    private String awsAccessKey;
+
+    @Value("${amazon.aws.secretkey}")
+    private String awsSecretKey;
 
     @Bean
     public String getSalt(){
@@ -15,16 +41,34 @@ public class GlobalProfile {
     }
 
     @Bean
-    public UserService getUserService() {
-        return new UserService();
+    public AWSCredentials amazonAWSCredentials() {
+        return new BasicAWSCredentials(awsAccessKey, awsSecretKey);
     }
 
     @Bean
-    public ProfileService getProfileService() { return new ProfileService(); }
+    public AmazonDynamoDB amazonDynamoDB() {
+        AmazonDynamoDB amazonDynamoDB =
+                AmazonDynamoDBClientBuilder
+                        .standard()
+                        .withEndpointConfiguration(
+                            new AwsClientBuilder.EndpointConfiguration(amazonDynamoDBEndpoint, amazonDynamoDBRegion))
+                .build();
 
-    @Bean
-    public SSLContextHelper getSSLContextHelper() {
-        return new SSLContextHelper();
+        DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
+
+        CreateTableRequest tableRequestUser = dynamoDBMapper
+                .generateCreateTableRequest(User.class);
+        CreateTableRequest tableRequestProfile = dynamoDBMapper
+                .generateCreateTableRequest(Profile.class);
+
+        tableRequestUser.setProvisionedThroughput(
+                new ProvisionedThroughput(1L, 1L));
+        tableRequestProfile.setProvisionedThroughput(
+                new ProvisionedThroughput(1L, 1L));
+
+        TableUtils.createTableIfNotExists(amazonDynamoDB, tableRequestUser);
+        TableUtils.createTableIfNotExists(amazonDynamoDB, tableRequestProfile);
+
+        return amazonDynamoDB;
     }
-
 }
