@@ -70,7 +70,7 @@ public class UserService {
         Optional<User> user = userRepository.findUserByEmail(email);
 
         if(!user.isPresent() || (user.isPresent() && user.get().getPassword() == null)){
-            throw new InvalidUserException(email);
+            throw new InvalidPasswordException(email);
         }
 
         boolean validPassword = PasswordUtil.verifyPassword(password, user.get().getPassword(), salt);
@@ -125,22 +125,30 @@ public class UserService {
     public Profile findProfileById(String id) throws InvalidUserException {
         Optional<Profile> profileGotten = profileRepository.findUserByUserID(id);
 
-        if(!profileGotten.isPresent())
+        if (!profileGotten.isPresent())
             throw new InvalidUserException(id);
 
         return profileGotten.get();
     }
 
-//    public Profile findProfileByEmail(String email) throws InvalidUserException {
-//
-//        Optional<Profile> userGotten = profileRepository.findUserByEmail(email);
-//
-//        if(!userGotten.isPresent()){
-//            throw new InvalidUserException(email);
-//        }
-//
-//        return userGotten.get();
-//    }
+    public List<Profile> findProfileById(String... id) throws InvalidUserException {
+        if(id == null){
+            return new ArrayList<Profile>();
+        }
+
+        List<Profile> profileGotten = profileRepository.findUserByUserIDIn(id);
+
+        return profileGotten;
+    }
+
+    public Profile findProfileByEmail(String email) throws InvalidUserException {
+        Optional<Profile> profileGotten = profileRepository.findUserByEmail(email);
+
+        if (!profileGotten.isPresent())
+            throw new InvalidUserException(email);
+
+        return profileGotten.get();
+    }
 
 
 

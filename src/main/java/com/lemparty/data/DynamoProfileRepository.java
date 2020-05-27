@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Transactional
 public interface DynamoProfileRepository extends CrudRepository<Profile, String> {
     Optional<Profile> findUserByUserID(String userID);
+    List<Profile> findUserByUserIDIn(String... userID);
     Optional<Profile> findUserByEmail(String email);
 
 }

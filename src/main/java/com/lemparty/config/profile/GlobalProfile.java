@@ -47,13 +47,16 @@ public class GlobalProfile {
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
-        AmazonDynamoDB amazonDynamoDB =
-                AmazonDynamoDBClientBuilder
-                        .standard()
-                        .withEndpointConfiguration(
-                            new AwsClientBuilder.EndpointConfiguration(amazonDynamoDBEndpoint, amazonDynamoDBRegion))
-                .build();
 
+        AmazonDynamoDBClientBuilder builder=   AmazonDynamoDBClientBuilder
+                        .standard();
+
+        if(!amazonDynamoDBEndpoint.equals("") && !amazonDynamoDBRegion.equals("")) {
+            builder.withEndpointConfiguration(
+                            new AwsClientBuilder.EndpointConfiguration(amazonDynamoDBEndpoint, amazonDynamoDBRegion));
+        }
+
+        AmazonDynamoDB amazonDynamoDB = builder.build();
         DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
 
         CreateTableRequest tableRequestUser = dynamoDBMapper

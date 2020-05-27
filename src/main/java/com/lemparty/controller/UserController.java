@@ -69,6 +69,19 @@ public class UserController {
         return new ResponseEntity(userProfile, HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity search(@RequestParam(name = "email") String email) {
+        Profile userProfile = null;
+        try {
+            userProfile = userService.findProfileByEmail(email);
+        } catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity(userProfile, HttpStatus.OK);
+
+    }
+
     @GetMapping("/{id}/profile")
     public ResponseEntity get(@PathVariable(name = "id") String id) {
         Profile userProfile = null;
@@ -81,4 +94,19 @@ public class UserController {
         return new ResponseEntity(userProfile, HttpStatus.OK);
 
     }
+
+    @GetMapping("")
+    public ResponseEntity get(@RequestParam(name = "idList", required = false) String[] id) {
+        List<Profile> userProfile = null;
+        try {
+            userProfile = userService.findProfileById(id);
+        } catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity(userProfile, HttpStatus.OK);
+
+    }
+
+
 }

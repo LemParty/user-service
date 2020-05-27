@@ -6,6 +6,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @DynamoDBTable(tableName = "profiles")
 public class Profile {
 
@@ -28,6 +31,15 @@ public class Profile {
     private String cuisine;
     private String dietrestrictions;
     private String alcohol;
+    private List<String> friendsList = new ArrayList<String>();
+
+    public List<String> getFriendsList() {
+        return friendsList;
+    }
+
+    public void setFriendsList(List<String> friendsList) {
+        this.friendsList = friendsList;
+    }
 
     public String getUserID() {
         return userID;
