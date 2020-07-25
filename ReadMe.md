@@ -11,6 +11,9 @@ To build it, you will navigate to the root folder where pom.xml is an execute:
 To run it, execute:
 `java -jar -Dspring.profiles.active=default-local target/*.jar`
 
+Postgres:
+https://www.postgresql.org/
+
 ## Current functionality:
 * Registration/User Creation
 * Profile creation
