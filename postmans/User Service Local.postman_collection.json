@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "436b1768-80b4-4d47-81b0-15abe01a0a76",
+		"name": "User Service Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"scott@lem.com\",\n\t\"password\" : \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{domain}}:{{port-user}}/users",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port-user}}",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://{{domain}}:{{port-user}}/users?idList=8c065f8b-8070-49a3-851c-b1c4b3ed68f6,4e042281-190c-4d59-8812-157fae0d1bdf",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port-user}}",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "idList",
+							"value": "8c065f8b-8070-49a3-851c-b1c4b3ed68f6,4e042281-190c-4d59-8812-157fae0d1bdf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User/Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\" : {\n\t    \"email\" : \"test@test.com\",\n\t    \"password\" : \"password\"\n\n\t},\n    \"profile\" : {\n\t    \"firstname\" : \"Test\",\n\t    \"lastname\" : \"Testman\",\n\t    \"email\" : \"test@test.com\",\n\t    \"birthmonth\" : 3,\n\t    \"birthday\" : 3,\n\t    \"birthyear\" : 2007,\n\t    \"friendslist\" : []\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{domain}}:{{port-user}}/users",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port-user}}",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstname\" : \"Test\",\n    \"lastname\" : \"Testman\",\n    \"email\" : \"test@test.com\",\n    \"birthmonth\" : 3,\n    \"birthday\" : 31,\n    \"birthyear\" : 2007\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{domain}}:{{port-user}}/users/91e97230-aa8a-4e5e-8712-b3120a6b890c/profile",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port-user}}",
+					"path": [
+						"users",
+						"91e97230-aa8a-4e5e-8712-b3120a6b890c",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
