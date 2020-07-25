@@ -1,12 +1,7 @@
 package com.lemparty.service;
 
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
-import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
-import com.amazonaws.services.dynamodbv2.util.TableUtils;
-import com.lemparty.data.DynamoProfileRepository;
-import com.lemparty.data.DynamoUserRepository;
+import com.lemparty.data.ProfileRepository;
+import com.lemparty.data.UserRepository;
 import com.lemparty.entity.Profile;
 import com.lemparty.entity.Registration;
 import com.lemparty.entity.User;
@@ -15,28 +10,23 @@ import com.lemparty.exception.InvalidUserException;
 import com.lemparty.exception.DuplicateUserException;
 import com.lemparty.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Component
 public class UserService {
 
     @Autowired
-    private DynamoUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private DynamoProfileRepository profileRepository;
+    private ProfileRepository profileRepository;
 
     @Autowired
     private String salt;
 
-    @Autowired
-    private AmazonDynamoDB amazonDynamoDB;
 
     @Transactional
     public Profile createUserAndProfile(Registration registration) throws DuplicateUserException {
