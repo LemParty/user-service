@@ -30,7 +30,6 @@ Non-persisted entities:
 * Friend: Contains info for the Front End logic that is populated on the fly
 
 ## To Test it:
-*Postman*
 Postman is an API development tool, used to build and execute requests for APIs and Restful services
 
 Download Postman:
