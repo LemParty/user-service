@@ -1,48 +1,56 @@
 package com.lemparty.entity;
 
-public class Friend {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
-    private String userID;
-    private String firstname;
-    private String lastname;
-    private boolean mutual;
+@Entity
+@Table(name = "friend")
+public class Friend implements Serializable {
 
-    public Friend(String userID, String firstname, String lastname){
-        this.userID = userID;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.mutual = false;
+    @Id
+    private String friendID;
+
+    @Column(name = "user1ID")
+    private int user1ID;
+
+    @Column(name = "mutualFriends")
+    private String[] mutualFriends;
+
+    @Column(name=" blockedFriends")
+    private String[] blockedFriends;
+
+    public String getFriendID() {
+        return friendID;
     }
 
-    public String getUserID() {
-        return userID;
+    public void setFriendID(String friendID) {
+        this.friendID = friendID;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public int getUser1ID() {
+        return user1ID;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public void setUser1ID(int user1ID) {
+        this.user1ID = user1ID;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public String[] getMutualFriends() {
+        return mutualFriends;
     }
 
-    public String getLastname() {
-        return lastname;
+    public void setMutualFriends(String[] mutualFriends) {
+        this.mutualFriends = mutualFriends;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public String[] getBlockedFriends() {
+        return blockedFriends;
     }
 
-    public boolean isMutual() {
-        return mutual;
-    }
-
-    public void setMutual(boolean mutual) {
-        this.mutual = mutual;
+    public void setBlockedFriends(String[] blockedFriends) {
+        this.blockedFriends = blockedFriends;
     }
 }
