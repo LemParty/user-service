@@ -8,6 +8,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+// Comment table for Bets and for Wagers and Games
 @Entity
 @Table(name = "comment")
 public class Comment implements Serializable {
