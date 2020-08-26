@@ -21,21 +21,20 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "firstname")
-    private String firstname;
+    @Column(name = "firstName")
+    private String firstName;
 
-    @Column(name = "lastname")
-    private String lastname;
+    @Column(name = "lastName")
+    private String lastName;
 
     @Column(name = "dob")
     private Date dob;
 
-    @Column(name = "creation_date")
-    private Timestamp creation_date;
+    @Column(name = "creationDate")
+    private Timestamp creationDate;
 
-    @Column(name= "modified_date")
-    private Timestamp modified_date;
-
+    @Column(name= "modifiedDate")
+    private Timestamp modifiedDate;
 
     public String getUserID() {
         return userID;
@@ -61,20 +60,20 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Date getDob() {
@@ -85,19 +84,19 @@ public class User implements Serializable {
         this.dob = dob;
     }
 
-    public Timestamp getCreation_date() {
-        return creation_date;
+    public Timestamp getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreation_date(Timestamp creation_date) {
-        this.creation_date = creation_date;
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
     }
 
-    public Timestamp getModified_date() {
-        return modified_date;
+    public Timestamp getModifiedDate() {
+        return modifiedDate;
     }
 
-    public void setModified_date(Timestamp modified_date) {
-        this.modified_date = modified_date;
+    public void setModifiedDate(Timestamp modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 }
