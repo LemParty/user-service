@@ -10,14 +10,17 @@ import java.io.Serializable;
 @Table(name = "friend")
 public class Friend implements Serializable {
 
+    // Friend A (friendID?) --> Friends List, Block List
+
+
     @Id
-    private String friendID;
+    private String friendID; //UYnique ID with Friend
 
     @Column(name = "user1ID")
-    private int user1ID;
+    private int user1ID; //foreign key with User
 
-    @Column(name = "mutualFriends")
-    private String[] mutualFriends;
+    @Column(name = "friends")
+    private String[] friends;
 
     @Column(name=" blockedFriends")
     private String[] blockedFriends;
@@ -30,6 +33,14 @@ public class Friend implements Serializable {
         this.friendID = friendID;
     }
 
+    public String[] getFriends() {
+        return friends;
+    }
+
+    public void setFriends(String[] friends) {
+        this.friends = friends;
+    }
+
     public int getUser1ID() {
         return user1ID;
     }
@@ -38,13 +49,7 @@ public class Friend implements Serializable {
         this.user1ID = user1ID;
     }
 
-    public String[] getMutualFriends() {
-        return mutualFriends;
-    }
 
-    public void setMutualFriends(String[] mutualFriends) {
-        this.mutualFriends = mutualFriends;
-    }
 
     public String[] getBlockedFriends() {
         return blockedFriends;

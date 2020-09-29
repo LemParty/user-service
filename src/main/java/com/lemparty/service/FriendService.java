@@ -28,26 +28,29 @@ public class FriendService {
     private UserService userService;
 
     public List<Friend> findFriendsById(String userID, String lookupID) throws InvalidUserException {
-        List<Friend> friendList = new ArrayList<Friend>();
-
-        Profile userProfile = profileRepository.findUserByUserID(userID).get();
-        Profile lookupProfile = profileRepository.findUserByUserID(lookupID).get();
-
-        if(lookupProfile != null
-                && lookupProfile.getFriendsList() != null
-                && lookupProfile.getFriendsList().length > 0) {
-            List<Profile> profiles = userService.findProfileById(lookupProfile.getFriendsList());
-            for(Profile p : profiles){
-                Friend newFriend = new Friend(p.getUserID(), p.getFirstname(), p.getLastname());
-                if(userProfile.hasFriend(p.getUserID()) || p.getUserID().equals(userProfile.getUserID())){
-                    newFriend.setMutual(true);
-                }
-
-                friendList.add(newFriend);
-            }
-        }
-
-        return friendList;
+//        List<Friend> friendList = new ArrayList<Friend>();
+//
+//        Profile userProfile = profileRepository.findUserByUserID(userID).get();
+//        Profile lookupProfile = profileRepository.findUserByUserID(lookupID).get();
+//
+//        if(lookupProfile != null
+//                && lookupProfile.getFriendsList() != null
+//                && lookupProfile.getFriendsList().length > 0) {
+//            List<Profile> profiles = userService.findProfileById(lookupProfile.getFriendsList());
+//            for(Profile p : profiles){
+//                Friend newFriend = new Friend(/*p.getUserID(), p.getFirstname(), p.getLastname()*/);
+//                newFriend.setUser1ID();
+//                if(userProfile.hasFriend(p.getUserID()) || p.getUserID().equals(userProfile.getUserID())){
+//                    String[] friendArray
+//                    newFriend.setMutualFriends();
+//                }
+//
+//                friendList.add(newFriend);
+//            }
+//        }
+//
+//        return friendList;
+        return null;
     }
 
 }

@@ -32,28 +32,28 @@ public class Profile implements Serializable {
     @Column(name = "birthyear")
     private int birthyear;
 
-    @Column(name = "friendslist")
-    private String[] friendsList;
+    //@Column(name = "friendslist")
+   // private String[] friendsList;
 
-    public boolean hasFriend(String id){
-        if(this.friendsList == null)
-            return false;
+//    public boolean hasFriend(String id){
+//        if(this.friendsList == null)
+//            return false;
+//
+//        for(String s : this.friendsList){
+//            if(s.equals(id))
+//                return true;
+//        }
+//
+//        return false;
+//    }
 
-        for(String s : this.friendsList){
-            if(s.equals(id))
-                return true;
-        }
+//    public String[] getFriendsList() {
+//        return friendsList;
+//    }
 
-        return false;
-    }
-
-    public String[] getFriendsList() {
-        return friendsList;
-    }
-
-    public void setFriendsList(String[] friendsList) {
-        this.friendsList = friendsList;
-    }
+//    public void setFriendsList(String[] friendsList) {
+//        this.friendsList = friendsList;
+//    }
 
 
     public String getUserID() {
