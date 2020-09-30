@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable {
     @Id
     private String userID;

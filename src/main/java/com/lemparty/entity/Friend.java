@@ -11,10 +11,16 @@ import java.io.Serializable;
 public class Friend implements Serializable {
 
     // Friend A (friendID?) --> Friends List, Block List
+    // Should User contain the friends? or should Friends be its own DB?
 
+    // Friend will be it's own DB
+    // 1. Create Friend Table -- DONE
+    // 2. Create Friend repository;  CRUD = Create, Read, Update, Delete; default is CRUD by ID
+    // 3. Create/Update Friend Service; implement findFriendsById method
+    // 4. Create/Update Friend Controller -- DONE; but be able to test
 
     @Id
-    private String friendID; //UYnique ID with Friend
+    private String friendID; //Unique ID with Friend
 
     @Column(name = "user1ID")
     private int user1ID; //foreign key with User
